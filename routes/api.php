@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get( '/id/{id}', [ MovieController::class, 'single' ] );
+
 Route::group( [ 'prefix' => 'search' ], function()  
 {  
     Route::get( '{year}/{query}', [ MovieController::class, 'searchByNameAndYear' ] );

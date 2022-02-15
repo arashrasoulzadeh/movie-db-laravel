@@ -27,15 +27,6 @@ class MovieService implements MovieServiceInterface
 	{
 		return $this->movieRepository->findMovieByNameAndYear( $name, $year );
 	}
-
-	public function searchResultResource() : string
-	{
-		return $this->movieRepository->searchResultResource();
-	}
-
-	public function searchResultResourceCollection() : string
-	{
-		return $this->movieRepository->searchResultResourceCollection();
-	}
+ 
 
 }

@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\DownloadImageEvent;
+use App\Events\FetchSingleMovieFromOpenMovieEvent;
+use App\Events\SaveSingleMovieToDatabaseEvent;
+use App\Listeners\DownloadImageListener;
+use App\Listeners\FetchSingleMovieFromOpenMovieListener;
+use App\Listeners\SaveSingleMovieToDatabaseListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +24,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        DownloadImageEvent::class => [
+            DownloadImageListener::class
+        ],
+        SaveSingleMovieToDatabaseEvent::class => [
+            SaveSingleMovieToDatabaseListener::class
+        ],
+        FetchSingleMovieFromOpenMovieEvent::class => [
+            FetchSingleMovieFromOpenMovieListener::class
+        ]
     ];
 
     /**

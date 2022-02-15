@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class IMDBMovieSearchResultResource extends JsonResource
+class MovieSearchResultResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,13 +14,13 @@ class IMDBMovieSearchResultResource extends JsonResource
      */
     public function toArray($request)
     {
-        return 
-        [
-            'id'    =>  $this->imdbID,
-            'type'  =>  $this->Type,
-            'year'  =>  $this->Year,
-            'title' =>  $this->Title,
-            'poster'=>  $this->Poster
-        ];
+        return
+            [
+                'id'    =>  $this->getId(),
+                'type'  =>  $this->getType(),
+                'year'  =>  $this->getYear(),
+                'title' =>  $this->getTitle(),
+                'poster' =>  $this->getPoster()->getPath()
+            ];
     }
 }
