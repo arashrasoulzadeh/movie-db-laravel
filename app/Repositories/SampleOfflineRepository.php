@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Entities\MovieSingle;
+use App\Events\FetchSearchFromOpenMovieEvent;
 use App\Events\FetchSingleMovieFromOpenMovieEvent;
 use App\Events\SaveSingleMovieToDatabaseEvent;
 use App\Models\Movie;
@@ -22,7 +23,8 @@ class SampleOfflineRepository implements MoviesRepositoryInterface
 	}
 	public function findMovieByNameAndYear( string $name, string $year )
 	{
-
+		event( new FetchSearchFromOpenMovieEvent( $name, $year ) );
+		return Movie::where( 'title', 'like', '%' . strtolower( $name ) . '%' )->where( 'year', $year )->get() ;
 	}
 
 }

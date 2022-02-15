@@ -19,7 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        app()->bind( MoviesRepositoryInterface::class, SampleOfflineRepository::class );
+        if ( env( 'MODE', 'ONLINE' ) === 'ONLINE' )
+        {
+            app()->bind( MoviesRepositoryInterface::class, OpenMoviesRepository::class );
+        }else{
+            app()->bind( MoviesRepositoryInterface::class, SampleOfflineRepository::class );
+        }
         app()->bind( MovieServiceInterface::class, MovieService::class );
     }
 

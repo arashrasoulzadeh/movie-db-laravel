@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\DownloadImageEvent;
+use App\Events\FetchSearchFromOpenMovieEvent;
 use App\Events\FetchSingleMovieFromOpenMovieEvent;
 use App\Events\SaveSingleMovieToDatabaseEvent;
 use App\Listeners\DownloadImageListener;
+use App\Listeners\FetchSearchFromOpenMovieListener;
 use App\Listeners\FetchSingleMovieFromOpenMovieListener;
 use App\Listeners\SaveSingleMovieToDatabaseListener;
 use Illuminate\Auth\Events\Registered;
@@ -32,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         FetchSingleMovieFromOpenMovieEvent::class => [
             FetchSingleMovieFromOpenMovieListener::class
+        ],
+        FetchSearchFromOpenMovieEvent::class => [
+            FetchSearchFromOpenMovieListener::class
         ]
     ];
 

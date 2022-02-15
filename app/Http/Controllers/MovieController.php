@@ -7,6 +7,7 @@ use App\Http\Resources\MovieSearchResultResourceCollection;
 use App\Http\Resources\MovieSingleResource;
 use App\Services\MovieServiceInterface;
 use Illuminate\Http\Request;
+use Ramsey\Collection\Collection;
 
 class MovieController extends Controller
 {
@@ -16,7 +17,11 @@ class MovieController extends Controller
     }
     public function searchByNameAndYear( Request $request, $year, $query )
     {
-        $result = collect( $this->movieService->findMovieByNameAndYear( $query, $year ) );
+        $result = $this->movieService->findMovieByNameAndYear( $query, $year ) ;
+        if ( !$result instanceof Collection )
+        {
+            $result= collect($result);
+        }
         return ( new MovieSearchResultResourceCollection( new MovieSearchResultResource( $result ) ) );
     }
 
